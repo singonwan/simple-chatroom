@@ -17,4 +17,10 @@ var io = socket(server);
 io.on('connection', function(socket) {
     // the frontend socket that connected to our server
     console.log('socket connection success');
+    //listen for chat message
+    socket.on('chat', function(data) {
+        // sending chat message back to all sockets - io.sockets
+        io.sockets.emit('chat', data);
+        //frontend can handle it and output it on screen
+    });
 });
